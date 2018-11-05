@@ -15,6 +15,7 @@ window.onload = function(){
             for(var i = 0; i < 4; i++){
                 boxes[p+i].style.top = num.toString()+'px';
                 boxes[p+i].style.left = (100 * i).toString()+'px';
+                boxes[p+i].style.backgroundPosition = (-100 * i).toString()+'px '+(-1 * num).toString()+'px';
             }
             num += 100;
         }
