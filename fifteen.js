@@ -1,6 +1,6 @@
 window.onload = function(){
     const boxes = document.querySelectorAll('#puzzlearea div');
-    let blankTile = ['300px', '300px'];
+    let blankTile = [300, 300];
     const shuffleButton = document.getElementById('shufflebutton');
 
     setUp();
@@ -10,6 +10,8 @@ window.onload = function(){
     function setUp(){
         boxes.forEach(d =>{
             d.classList.add("puzzlepiece");
+            d.onmouseover = canMove;
+            d.onmouseout = cannotMove;
         });
     }
 
@@ -35,15 +37,55 @@ window.onload = function(){
     }
 
     function movePieces(){
-        var tempT = this.style.top;
-        var tempL = this.style.left;
-        this.style.top = blankTile[0];
-        this.style.left = blankTile[1];
-        blankTile[0] = tempT;
-        blankTile[1] = tempL;
+        if (moveRight(this) || moveLeft(this) || moveDown(this) || moveUp(this)) {
+            var tempT = parseInt(this.style.top);
+            var tempL = parseInt(this.style.left);
+            this.style.top = blankTile[1]+'px';
+            this.style.left = blankTile[0]+'px';
+            blankTile[0] = tempL;
+            blankTile[1] = tempT;
+        }
+    }
+
+    function canMove() {
+        if (moveRight(this) || moveLeft(this) || moveDown(this) || moveUp(this)) {
+            this.classList.add('movablepiece');
+        }
+    }
+
+    function cannotMove(){
+        this.classList.remove('movablepiece');
+    }
+
+    function moveRight(box){
+        if(parseInt(box.style.left) - blankTile[0] === -100 && parseInt(box.style.top) === blankTile[1]) {
+            return true;
+        }
+        return false;
+    }
+
+    function moveLeft(box){
+        if(parseInt(box.style.left) - blankTile[0] === 100 && parseInt(box.style.top) === blankTile[1]) {
+            return true;
+        }
+        return false;
+    }
+
+    function moveDown(box){
+        if(parseInt(box.style.left) === blankTile[0] && parseInt(box.style.top) - blankTile[1] === -100) {
+            return true;
+        }
+        return false;
+    }
+
+    function moveUp(box){
+        if(parseInt(box.style.left) === blankTile[0] && parseInt(box.style.top) - blankTile[1] === 100) {
+            return true;
+        }
+        return false;
     }
 
     function shuffle(){
-        
+
     }
 }
