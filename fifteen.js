@@ -32,19 +32,23 @@ window.onload = function(){
 
     function selectPieces(){
         boxes.forEach(d =>{
-            d.addEventListener('click', movePieces);
+            d.addEventListener('click', isMovable);
         })
     }
 
-    function movePieces(){
+    function isMovable(){
         if (moveRight(this) || moveLeft(this) || moveDown(this) || moveUp(this)) {
-            var tempT = parseInt(this.style.top);
-            var tempL = parseInt(this.style.left);
-            this.style.top = blankTile[1]+'px';
-            this.style.left = blankTile[0]+'px';
-            blankTile[0] = tempL;
-            blankTile[1] = tempT;
+            movePieces(this);
         }
+    }
+
+    function movePieces(box){
+        var tempT = parseInt(box.style.top);
+        var tempL = parseInt(box.style.left);
+        box.style.top = blankTile[1]+'px';
+        box.style.left = blankTile[0]+'px';
+        blankTile[0] = tempL;
+        blankTile[1] = tempT;
     }
 
     function canMove() {
@@ -86,6 +90,13 @@ window.onload = function(){
     }
 
     function shuffle(){
+        for(var i = 0; i <= 50; i++){
+            var tempT = boxes[Math.floor(Math.random() * 15)].style.top;
+            var tempL = boxes
+        }
+    }
+
+    function moveRandom(){
 
     }
 }
