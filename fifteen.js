@@ -90,13 +90,8 @@ window.onload = function(){
     }
 
     function shuffle(){
-        for(var i = 0; i <= 50; i++){
-            var tempT = boxes[Math.floor(Math.random() * 15)].style.top;
-            var tempL = boxes
+        for(var i = 0; i <= 100; i++){
+            movePieces(boxes[Math.floor(Math.random() * 15)]);
         }
-    }
-
-    function moveRandom(){
-
     }
 }
